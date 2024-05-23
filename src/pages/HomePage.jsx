@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { getAnimalsApi } from "../api/animalsApi";
 import SearchFilters from "../components/SearchFilters";
 import AnimalsList from "../components/AnimalsList";

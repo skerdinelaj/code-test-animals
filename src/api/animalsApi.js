@@ -17,5 +17,13 @@ export const getAnimalsApi = async (animalType) => {
   }
 };
 
+export const getAnimalApi = async (animalType, id) => {
+  try {
+    const response = await axios.get(animalsApi[animalType] + `/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching animal details:", error);
+  }
+};
 
 

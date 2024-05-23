@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getAnimalApi } from "../api/animalsApi";
 
 export default function AnimalCard({
   setSelectedAnimal,
@@ -7,10 +8,7 @@ export default function AnimalCard({
 }) {
   const getAnimalDetails = async (id) => {
     try {
-      const response = await axios.get(
-        `https://freetestapi.com/api/v1/${animalType}/${id}`
-      );
-      const animal = response.data;
+      const animal = await getAnimalApi(animalType, id);
       setSelectedAnimal(animal);
     } catch (error) {
       console.error("Error fetching animal details:", error);
