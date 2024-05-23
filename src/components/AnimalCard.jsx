@@ -1,24 +1,23 @@
-import axios from "axios";
+import React, { useCallback } from "react";
 import { getAnimalApi } from "../api/animalsApi";
 
-export default function AnimalCard({
+function AnimalCard({
   setSelectedAnimal,
   animalType,
   ...animal
 }) {
-  const getAnimalDetails = async (id) => {
+
+  const getAnimalDetails = useCallback(async (id) => {
     try {
-      const animal = await getAnimalApi(animalType, id);
-      setSelectedAnimal(animal);
+      const animalDetails = await getAnimalApi(animalType, id);
+      setSelectedAnimal(animalDetails);
+      console.log("Animal details:", animalDetails);
     } catch (error) {
       console.error("Error fetching animal details:", error);
     }
-  };
-  const handleAnimalClick = (id) => {
-    getAnimalDetails(id);
-  };
+  }, [animalType, setSelectedAnimal]);
   return (
-    <li onClick={() => handleAnimalClick(animal.id)}>
+    <li onClick={() => getAnimalDetails(animal.id)}>
       <article className="animal-item">
         <img src={animal.image} alt={animal.name} width="200" />
         <div>
@@ -31,3 +30,5 @@ export default function AnimalCard({
     </li>
   );
 }
+
+export default React.memo(AnimalCard);
