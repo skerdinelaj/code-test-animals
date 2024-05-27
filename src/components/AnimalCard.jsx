@@ -11,7 +11,6 @@ function AnimalCard({
     try {
       const animalDetails = await getAnimalApi(animalType, id);
       setSelectedAnimal(animalDetails);
-      console.log("Animal details:", animalDetails);
     } catch (error) {
       console.error("Error fetching animal details:", error);
     }
